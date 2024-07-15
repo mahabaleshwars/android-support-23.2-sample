@@ -1,0 +1,26 @@
+name: 329 error
+
+on:
+ workflow_dispatch:
+
+jobs:
+  build_android:
+    # if: "contains(github.event.head_commit.message, 'build-android')"
+    name: Build Android
+    runs-on: self-hosted
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.19.1"
+      - name: Setup Java
+        uses: actions/setup-java@v4.2.0
+        with:
+          java-version: 17.0.11
+          distribution: "oracle"
+          check-latest: false
+          cache: "gradle"
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
